@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.OneHotEncoderModel","timestamp":1777989394356,"sparkVersion":"3.5.1","uid":"OneHotEncoder_b0c1f94ca6e0","paramMap":{"inputCol":"Extracurricular_Activities_idx","outputCol":"Extracurricular_Activities_vec"},"defaultParamMap":{"dropLast":true,"handleInvalid":"error","outputCol":"OneHotEncoder_b0c1f94ca6e0__output"}}
