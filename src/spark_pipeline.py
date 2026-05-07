@@ -20,6 +20,10 @@ df = spark.read.csv(
     inferSchema=True
 )
 
+df = df.repartition(4)
+
+print("Number of partitions:", df.rdd.getNumPartitions())
+
 df = df.drop("Student_ID")
 
 # -------------------------------
@@ -116,8 +120,19 @@ predictions.select("label", "prediction", "probability").show(5)
 # Force execution
 print("Prediction count:", predictions.count())
 
+predictions = predictions.repartition(4)
+
+predictions.select(
+    "Study_Hours_per_Week",
+    "Attendance_Rate",
+    "Past_Exam_Scores",
+    "label",
+    "prediction"
+).write.mode("overwrite").csv(
+    "hdfs://localhost:9000/student-data/output_predictions"
+)
 # -------------------------------
-# 💾 SAVE TO HDFS (KEY ADDITION)
+# SAVE TO HDFS (KEY ADDITION)
 # -------------------------------
 predictions.select(
     "Study_Hours_per_Week",
